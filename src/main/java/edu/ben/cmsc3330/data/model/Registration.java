@@ -21,6 +21,10 @@ public class Registration {
 
     @Id
     @NotNull
+    @Column(name = "registration_id")
+    private String registrationId;
+
+    @NotNull
     @Column(name = "student_id")
     private String studentId;
 
