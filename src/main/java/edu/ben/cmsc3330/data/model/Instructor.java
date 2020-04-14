@@ -6,6 +6,7 @@ import lombok.experimental.SuperBuilder;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @SuperBuilder
@@ -16,28 +17,26 @@ import javax.persistence.Table;
 @EqualsAndHashCode
 @ToString
 @Entity
-@Table(name = "the_user")
-public class User extends AbstractEntity {
+@Table(name = "instructor")
+public class Instructor {
+
+    @Id
+    @NotNull
+    @Column(name = "instructor_id")
+    private String instructorId;
 
     @NotNull
-    @Column(name = "first_name")
+    @Column(name = "instructor_first_name")
     private String firstName;
 
     @NotNull
-    @Column(name = "last_name")
+    @Column(name = "instructor_last_name")
     private String lastName;
 
-    @Column(name = "ssn")
-    private String ssn;
+    @Column(name = "instructor_middle_name")
+    private String middleName;
 
-    @Column(name = "user_type")
-    private String userType;
-
-    @Column(name = "email")
-    private String email;
-
-    @Column(name = "password")
-    private String password;
-
+    @Column(name = "instructor_email")
+    private String instructorEmail;
 
 }
