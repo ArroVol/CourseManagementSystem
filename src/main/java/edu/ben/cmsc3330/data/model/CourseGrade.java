@@ -24,6 +24,10 @@ public class CourseGrade{
     @Column(name = "course_grade_id")
     private String courseGradeId;
 
+//    @NotNull
+//    @Column(name = "registration_id")
+//    private String registrationId;
+
     @NotNull
     @Column(name = "course_id")
     private String courseId;

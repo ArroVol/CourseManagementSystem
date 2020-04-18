@@ -1,12 +1,12 @@
-CREATE TABLE `student`
+CREATE TABLE IF NOT EXISTS `lab5`.`student`
 (
-    `id`  int(10) unsigned NOT NULL AUTO_INCREMENT,
-    `student_first_name`      varchar(45)      NOT NULL,
-    `student_last_name`     varchar(45) NOT NULL,
-    `student_middle_name`     varchar(45) DEFAULT NULL,
-    `ssn`        varchar(45)      NOT NULL,
-    `dob`       varchar(2)       NOT NULL,
-    `studentEmail` varchar(45)      NOT NULL,
-    PRIMARY KEY (`id`)
-) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
+    `id` INT UNSIGNED NOT NULL,
+    `student_first_name` VARCHAR(45) NOT NULL,
+    `student_last_name` VARCHAR(45) NOT NULL,
+    `student_middle_name` VARCHAR(45) NULL DEFAULT NULL,
+    `ssn` VARCHAR(45) NOT NULL,
+    `dob` VARCHAR(2) NOT NULL,
+    `studentEmail` VARCHAR(45) NOT NULL,
+    PRIMARY KEY (`id`))
+    ENGINE = InnoDB
+    DEFAULT CHARACTER SET = utf8;
