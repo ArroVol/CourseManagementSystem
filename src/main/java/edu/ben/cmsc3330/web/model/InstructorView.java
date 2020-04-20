@@ -1,7 +1,9 @@
 package edu.ben.cmsc3330.web.model;
 
-import edu.ben.cmsc3330.data.model.Address;
+import com.sun.istack.NotNull;
 import lombok.*;
+
+import javax.persistence.Column;
 
 @Builder
 @Getter
@@ -10,11 +12,17 @@ import lombok.*;
 @NoArgsConstructor
 @EqualsAndHashCode
 @ToString
-public class UserView {
+public class InstructorView {
+
+    private String instructorId;
+
 
     private String firstName;
 
+
     private String lastName;
 
-    private Address address;
+    private String middleName;
+
+    private String instructorEmail;
 }

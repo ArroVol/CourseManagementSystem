@@ -12,18 +12,15 @@ import javax.persistence.Column;
 @NoArgsConstructor
 @EqualsAndHashCode
 @ToString
-public class SectionView {
-    private String sectionNo;
+public class CourseView {
 
-    private String semester;
 
     private String courseId;
 
-    private String instructorId;
+    private String courseName;
 
-    private boolean status;
+    private String units;
 
-    private String roomNo;
+    private String courseSubject;
 
-    private String dayAndTime;
 }
