@@ -5,21 +5,27 @@ import edu.ben.cmsc3330.data.repository.AddressRepository;
 import edu.ben.cmsc3330.data.translator.AddressTranslator;
 import edu.ben.cmsc3330.web.model.AddressView;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.apache.catalina.mapper.Mapper;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.ValidationException;
 import java.util.Optional;
-
+import java.util.UUID;
+@RequestMapping("/model/address")
+@CrossOrigin
 @Slf4j
 @RestController
 public class AddressController {
 
     private final AddressRepository addressRepository;
 
+    private Mapper mapper;
+
 
     public AddressController(final AddressRepository addressRepository) {
         this.addressRepository = addressRepository;
+//        this.mapper = mapper;
     }
 
     // /users
@@ -41,5 +47,30 @@ public class AddressController {
 
         return AddressTranslator.entityToView(addressOption.get());
 
+    }
+
+    @PostMapping
+    public Address save(@RequestBody AddressView addressView, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            throw new ValidationException();
+        }
+
+        Address newAddress = new Address();
+        newAddress.setStreet(addressView.getStreet());
+        newAddress.setCity(addressView.getCity());
+        newAddress.setState(addressView.getState());
+        newAddress.setPostalCode(addressView.getPostalCode());
+
+//        Address newAddress = this.mapper.convertToNoteEntity(createAddressView);
+
+        // save note instance to db
+        this.addressRepository.save(newAddress);
+
+        return newAddress;
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable String id) {
+        this.addressRepository.deleteById(Long.valueOf(id));
     }
 }
