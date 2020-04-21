@@ -1,9 +1,6 @@
 package edu.ben.cmsc3330.web.model;
 
-import com.sun.istack.NotNull;
 import lombok.*;
-
-import javax.persistence.Column;
 
 @Builder
 @Getter
