@@ -1,0 +1,10 @@
+# Default configuration
+spring:
+  application:
+    name: cmsc3330
+  datasource:
+    initialization-mode: NEVER
+    url: jdbc:mysql://localhost:3306/lab5
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
