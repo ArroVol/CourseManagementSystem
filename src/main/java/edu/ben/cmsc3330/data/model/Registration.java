@@ -22,15 +22,15 @@ public class Registration {
     @Id
     @NotNull
     @Column(name = "registration_id")
-    private String registrationId;
+    private int registrationId;
 
     @NotNull
     @Column(name = "student_id")
-    private String studentId;
+    private int studentId;
 
     @NotNull
     @Column(name = "section_no")
-    private String sectionNo;
+    private int sectionNo;
 
     @NotNull
     @Column(name = "semester")

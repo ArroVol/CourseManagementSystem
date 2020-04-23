@@ -22,7 +22,7 @@ public class Course{
     @Id
     @NotNull
     @Column(name = "course_id")
-    private String courseId;
+    private int courseId;
 
     @NotNull
     @Column(name = "course_name")
@@ -30,7 +30,7 @@ public class Course{
 
     @NotNull
     @Column(name = "units")
-    private String units;
+    private int units;
 
     @NotNull
     @Column(name = "course_subject")

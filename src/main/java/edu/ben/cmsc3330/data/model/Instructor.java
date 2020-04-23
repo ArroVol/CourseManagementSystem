@@ -23,7 +23,7 @@ public class Instructor {
     @Id
     @NotNull
     @Column(name = "instructor_id")
-    private String instructorId;
+    private int instructorId;
 
     @NotNull
     @Column(name = "instructor_first_name")

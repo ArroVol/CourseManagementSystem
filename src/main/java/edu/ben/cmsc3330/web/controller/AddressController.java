@@ -57,10 +57,10 @@ public class AddressController {
 //                .orElseThrow(() -> new ResourceNotFoundException("User not found with id :" + userId));
     }
 
-    @PostMapping
-    public Address createAddress(@RequestBody Address address) {
-        return this.addressRepository.save(address);
-    }
+//    @PostMapping
+//    public Address createAddress(@RequestBody Address address) {
+//        return this.addressRepository.save(address);
+//    }
 
     @PostMapping
     public Address save(@RequestBody AddressView addressView, BindingResult bindingResult) {
@@ -78,10 +78,10 @@ public class AddressController {
         return newAddress;
     }
 
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable String id) {
-        this.addressRepository.deleteById(Long.valueOf(id));
-    }
+//    @DeleteMapping("/{id}")
+//    public void delete(@PathVariable String id) {
+//        this.addressRepository.deleteById(Long.valueOf(id));
+//    }
 
     // delete user by id
     @DeleteMapping("/{id}")

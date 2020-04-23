@@ -23,7 +23,7 @@ public class Section {
     @Id
     @NotNull
     @Column(name = "section_no")
-    private String sectionNo;
+    private int sectionNo;
 
     @NotNull
     @Column(name = "semester")
@@ -31,10 +31,10 @@ public class Section {
 
     @NotNull
     @Column(name = "course_id")
-    private String courseId;
+    private int courseId;
 
     @Column(name = "instructor_id")
-    private String instructorId;
+    private int instructorId;
 
     @Column(name = "status")
     private boolean status;

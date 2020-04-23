@@ -22,19 +22,19 @@ public class CourseGrade{
     @Id
     @NotNull
     @Column(name = "course_grade_id")
-    private String courseGradeId;
+    private int courseGradeId;
 
 //    @NotNull
 //    @Column(name = "registration_id")
 //    private String registrationId;
 
     @NotNull
-    @Column(name = "course_id")
-    private String courseId;
+    @Column(name = "section_no")
+    private int sectionNo;
 
     @NotNull
     @Column(name = "student_id")
-    private String studentId;
+    private int studentId;
 
     @Column(name = "grade_received")
     private String gradeReceived;
