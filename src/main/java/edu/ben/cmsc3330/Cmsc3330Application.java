@@ -57,7 +57,7 @@ public class Cmsc3330Application implements CommandLineRunner {
      */
     @Override
     public void run(String... args) throws Exception {
-        log.info("Running Application...");
+       // log.info("Running Application...");
 
 //        File categoryFile = new File("src/categories.csv");
 //        File distinctItemSortedFile = new File("src/distinct_items_sorted.csv");

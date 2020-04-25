@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS `lab5`.`section` (
     `section_no` INT UNSIGNED NOT NULL,
     `semester` VARCHAR(45) NOT NULL,
     `status` TINYINT NULL DEFAULT NULL,
-    `room_no` VARCHAR(2) NULL DEFAULT NULL,
+    `room_no` VARCHAR(45) NULL DEFAULT NULL,
     `day_and_time` VARCHAR(45) NULL DEFAULT NULL,
     `course_id` INT UNSIGNED NOT NULL,
     PRIMARY KEY (`section_no`),
