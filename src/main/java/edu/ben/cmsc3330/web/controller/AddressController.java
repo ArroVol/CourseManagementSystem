@@ -13,8 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.ValidationException;
 import java.util.List;
 import java.util.Optional;
-@RequestMapping("/model/address")
-@CrossOrigin
+
 @Slf4j
 @RestController
 public class AddressController {
@@ -30,9 +29,10 @@ public class AddressController {
     // /users/id
     // GET, POST, PUT, DELETE
 
+    //http://localhost:8080/api/address/1
     @GetMapping(value = "/api/address/{addressId}")
     public AddressView viewAddress(@PathVariable Long addressId) throws Exception {
-
+        log.info("inside view address method");
         // Retrieve the Address object
         Optional<Address> addressOption = addressRepository.findById(addressId);
 

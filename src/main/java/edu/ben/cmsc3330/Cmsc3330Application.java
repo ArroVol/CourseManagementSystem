@@ -18,54 +18,14 @@ import java.util.Scanner;
 
 @Slf4j
 @SpringBootApplication
-public class Cmsc3330Application implements CommandLineRunner {
-
-//    private final ProductRepository productRepository;
-//    private final ProductTypeRepository productTypeRepository;
-//    private final ProductService productService;
-//    private final OrderRepository orderRepository;
-
-    private Scanner input = new Scanner(System.in);
+public class Cmsc3330Application {
 
 
-//    public Cmsc3330Application( ProductRepository productRepository,
-//                               ProductTypeRepository productTypeRepository, ProductService productService, OrderRepository orderRepository) {
-//        this.productRepository = productRepository;
-//        this.productTypeRepository = productTypeRepository;
-//
-//        this.productService = productService;
-//        this.orderRepository = orderRepository;
-//    }
-
-    /**
-     * Starts the spring application
-     *
-     * @param args unused
-     * @throws FileNotFoundException
-     * @throws SQLException
-     */
-    public static void main(String[] args) throws FileNotFoundException, SQLException {
+    public static void main(String[] args) {
 
         SpringApplication.run(Cmsc3330Application.class, args);
     }
 
-    /**
-     * Callback used to run the bean.
-     *
-     * @param args incoming main method arguments
-     * @throws Exception on error
-     */
-    @Override
-    public void run(String... args) throws Exception {
-        log.info("Running Application...");
-
-//        File categoryFile = new File("src/categories.csv");
-//        File distinctItemSortedFile = new File("src/distinct_items_sorted.csv");
-//        insertProductData(categoryFile);
-//        insertProductTypeData(distinctItemSortedFile);
-//
-//        displayMenu();
-    }
 }
 
 

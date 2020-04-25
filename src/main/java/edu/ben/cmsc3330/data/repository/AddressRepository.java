@@ -11,5 +11,5 @@ public interface AddressRepository extends JpaRepository<Address, Long> {
 
     Page<Address> findByStreetContainingOrderByStreet(String name, final Pageable pageable);
 
-    Optional<Address> findAllByActiveIsTrue();
+//    Optional<Address> findAllByActiveIsTrue();
 }

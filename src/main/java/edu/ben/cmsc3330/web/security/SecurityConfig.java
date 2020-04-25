@@ -57,7 +57,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/api/password/request").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/register").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/users/*/register").permitAll()
+
                 .antMatchers(HttpMethod.POST, "/api/users/*/password/change").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/address/*").permitAll()
+
                 // HEALTH APIS
                 .antMatchers("/actuator").permitAll()
                 .antMatchers("/actuator/**").permitAll()
