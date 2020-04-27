@@ -12,21 +12,11 @@ public class StudentTranslator {
         return StudentView.builder()
                 .studentFirstName((student.getStudentFirstName()))
                 .studentLastName(student.getStudentLastName())
-                .studentMiddleName(student.getStudentMiddleName())
-                .ssn(student.getSsn())
-                .dob(student.getDob())
+//                .studentMiddleName(student.getStudentMiddleName())
+//                .ssn(student.getSsn())
+//                .dob(student.getDob())
                 .studentEmail(student.getStudentEmail())
                 .build();
     }
-    private String studentFirstName;
 
-    private String studentLastName;
-
-    private String studentMiddleName;
-
-    private String ssn;
-
-    private String dob;
-
-    private String studentEmail;
 }

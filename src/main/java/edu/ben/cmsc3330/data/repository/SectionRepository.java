@@ -18,7 +18,7 @@ public interface SectionRepository extends JpaRepository<Section, Long> {
 //    Optional<Section> findBySemester(String semester);
     Optional<Section> findBySectionNo(int sectionNo);
 
-    List<Section> findBySemester(String semester);
+    List<Section> findBySemesterContainingOrderBySemester(String semester);
 
 
 

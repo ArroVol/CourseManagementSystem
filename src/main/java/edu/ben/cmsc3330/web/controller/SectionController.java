@@ -46,10 +46,10 @@ public class SectionController {
     }
 
     // get sections by term
-    @GetMapping(value = "/api/term/{semester}")
+    @GetMapping(value = "/api/section/term/{semester}")
     public List<Section> getSectionByTerm(@PathVariable String semester) throws Exception {
         log.info("inside getSectionByTerm in the section controller class " + semester);
-        List<Section> sectionOption = sectionRepository.findBySemester("summer");
+        List<Section> sectionOption = sectionRepository.findBySemesterContainingOrderBySemester(semester);
         if (sectionOption.isEmpty()) {
             log.error("there are no classes during that semester [{}] does not exist in DB", semester);
             throw new Exception("Section with id [" + semester + "] does not exist in DB");
@@ -57,18 +57,6 @@ public class SectionController {
         return sectionOption;
     }
 
-    // get sections by term
-    @GetMapping(value = "/api/term")
-    public List<Section> getSectionsByTerm() {
-        log.info("help " );
-        List<Section> sectionOption = sectionRepository.findBySemester("summer");
-        if (sectionOption.isEmpty()) {
-            log.error("there are no classes during that semester [{}] does not exist in DB");
-
-        }
-//        return SectionTranslator.entityToView(sectionOption.get());
-        return sectionOption;
-    }
 
 
 //    @PostMapping

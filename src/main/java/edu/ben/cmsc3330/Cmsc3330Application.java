@@ -79,9 +79,6 @@ public class Cmsc3330Application  {
             String part = entry.getValue().toString();
             sql += part;
             System.out.println(sql);
-//            studentRepository.save()
-
-
         }
     }
 
