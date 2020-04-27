@@ -60,6 +60,29 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .antMatchers(HttpMethod.POST, "/api/users/*/password/change").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/address/*").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/address").permitAll()
+
+                .antMatchers(HttpMethod.GET, "/api/view-courses/*").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/view-courses").permitAll()
+
+                .antMatchers(HttpMethod.GET, "/api/drop-courses/*").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/drop-courses").permitAll()
+
+                .antMatchers(HttpMethod.GET, "/api/enroll/*").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/enroll").permitAll()
+
+                .antMatchers(HttpMethod.GET, "/api/section/*").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/section").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/section/summer").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/section/term/*").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/section/term").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/section/term/summer").permitAll()
+
+                .antMatchers(HttpMethod.GET, "/api/term/*").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/term").permitAll()
+
+
+
 
                 // HEALTH APIS
                 .antMatchers("/actuator").permitAll()

@@ -13,17 +13,18 @@ import javax.persistence.Column;
 @EqualsAndHashCode
 @ToString
 public class SectionView {
-    private String sectionNo;
+    private int sectionNo;
 
     private String semester;
 
-    private String courseId;
+    private int courseId;
 
-    private String instructorId;
+//    private String instructorId;
 
     private boolean status;
 
     private String roomNo;
 
     private String dayAndTime;
+
 }

@@ -4,6 +4,7 @@ import edu.ben.cmsc3330.data.model.Address;
 import edu.ben.cmsc3330.data.repository.AddressRepository;
 import edu.ben.cmsc3330.data.translator.AddressTranslator;
 import edu.ben.cmsc3330.web.model.AddressView;
+import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.catalina.mapper.Mapper;
 import org.springframework.http.ResponseEntity;
@@ -19,11 +20,9 @@ import java.util.Optional;
 public class AddressController {
 
     private final AddressRepository addressRepository;
-    private Mapper mapper;
 
     public AddressController(final AddressRepository addressRepository) {
         this.addressRepository = addressRepository;
-//        this.mapper = mapper;
     }
     // /users
     // /users/id
@@ -45,8 +44,9 @@ public class AddressController {
     }
 
     // get all users
-    @GetMapping
+    @GetMapping(value = "/api/address")
     public List<Address> getAllUsers() {
+        log.info("inside the getAllusers method");
         return this.addressRepository.findAll();
     }
 

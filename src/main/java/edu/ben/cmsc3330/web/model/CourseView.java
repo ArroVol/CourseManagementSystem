@@ -14,12 +14,11 @@ import javax.persistence.Column;
 @ToString
 public class CourseView {
 
-
-    private String courseId;
+    private int courseId;
 
     private String courseName;
 
-    private String units;
+    private int units;
 
     private String courseSubject;
 

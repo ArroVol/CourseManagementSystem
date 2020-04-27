@@ -6,9 +6,10 @@ import lombok.experimental.SuperBuilder;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
-@SuperBuilder
+@Builder
 @Getter
 @Setter
 @AllArgsConstructor
@@ -17,7 +18,11 @@ import javax.persistence.Table;
 @ToString
 @Entity
 @Table(name = "student")
-public class Student extends AbstractEntity{
+public class Student {
+
+    @Id
+    @Column(name = "id")
+    private int id;
 
     @NotNull
     @Column(name = "student_first_name")

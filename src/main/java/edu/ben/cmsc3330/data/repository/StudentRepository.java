@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface StudentRepository extends JpaRepository<Student, Long> {
 
-    Page<Student> findByActiveIsTrue(Pageable pageable);
+//    Page<Student> findByActiveIsTrue(Pageable pageable);
 
     Page<Student> findByIdContainingOrderById(Long id, Pageable pageable);
 

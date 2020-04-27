@@ -1,0 +1,8 @@
+ID,First Name,Last Name,Middle Name,SSN,Date of birth,Email,Address,City,State,Zip code,Phone Number,Major,GPA,Total Credits,Expected Graduation Date
+1,Bob,Smith,Bobby,112-223-3345,1/1/1999,bobSmith@gmail.com,100 Elm Street,Romeoville,IL,12345,630-630-6300,Computer Science,3.1,50,5/12/2022
+2,Jack,Jackson,John,791-123-3456,2/1/1999,jjackson@gmail.com,13 Jackson St,Naperville,IL,11111,123-345-5678,Business Analytics,3.2,80,5/12/2021
+3,Tim,Turner,Tom,346-345-6462,3/1/1997,oddParents@gmail.com,123 Oddparent St.,Lisle,IL,98765,111-222-3333,Education,3,60,5/12/2022
+4,Tina,Turner,Elizabeth,234-643-2146,4/5/1998,tinaTurner@gmail.com,123 Oddparent St.,Lisle,IL,98765,222-333-4444,Health Science,3.3,50,5/12/2022
+5,Dan,Man,Drake,232-555-3242,7/7/1997,danTheMan@gmail.com,777 Lucky St.,Bolingbrook,IL,77777,777-777-7777,Computer Science,3.7,77,5/12/2021
+6,Noah,Go,Alex,743-324-6263,6/1/1996,nogo@yahoo.com,34 Orange Dr.,IndianapolisIN,IN,43251,432-455-4555,Chemistry,2.8,45,5/12/2023
+7,Bro,Broski,Brother,311-355-2523,2/2/1995,TheBro@gmail.com,12 Bro Avenue,Broville,MI,99999,999-888-7777,Health Science,4,90,12/20/2020
