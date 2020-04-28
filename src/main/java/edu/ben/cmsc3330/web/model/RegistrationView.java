@@ -12,11 +12,11 @@ import javax.persistence.Column;
 @EqualsAndHashCode
 @ToString
 public class RegistrationView {
-    private String registrationId;
+    private int registrationId;
 
-    private String studentId;
+    private int studentId;
 
-    private String sectionNo;
+    private int sectionNo;
 
     private String semester;
 
