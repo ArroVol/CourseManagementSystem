@@ -20,6 +20,10 @@ public class Cmsc3330Application  {
 
 
 //    public static ProcessData dataProcessor;
+
+    /**
+     * All Object repositories
+     */
     private final AddressRepository addressRepository;
     private final CourseRepository courseRepository;
     private final InstructorRepository instructorRepository;
@@ -28,8 +32,11 @@ public class Cmsc3330Application  {
     private final StudentRepository studentRepository;
     private final UserRepository userRepository;
     private final CourseGradeRepository courseGradeRepository;
-    
-    
+
+
+    /**
+     * All object Hashmaps used for data import
+     */
     public static HashMap<String, Student> people = new HashMap<String, Student>();
     public static HashMap<String, Instructor> instructors = new HashMap<String, Instructor>();
     public static HashMap<String, Course> courses = new HashMap<String, Course>();
@@ -37,7 +44,7 @@ public class Cmsc3330Application  {
     public static HashMap<String, Section> sections = new HashMap<String, Section>();
 
     /**
-     * ArrayList to remove student row
+     * ArrayLists to remove duplicate data
      */
     public static ArrayList<String> removeNames = new ArrayList<String>();
     public static ArrayList<String> removeInstructors = new ArrayList<String>();
@@ -45,6 +52,17 @@ public class Cmsc3330Application  {
     public static ArrayList<String> removeGrades = new ArrayList<String>();
     public static ArrayList<String> removeSections = new ArrayList<String>();
 
+    /**
+     * Class Repository Constructor
+     * @param addressRepository Address repository
+     * @param courseRepository Course repository
+     * @param instructorRepository Instructor repository
+     * @param registrationRepository Registration repository
+     * @param sectionRepository Section repository
+     * @param studentRepository Student repository
+     * @param userRepository User repository
+     * @param courseGradeRepository Course Grade Repository
+     */
     public Cmsc3330Application(AddressRepository addressRepository,
        CourseRepository courseRepository,
        InstructorRepository instructorRepository, RegistrationRepository registrationRepository,
@@ -60,6 +78,12 @@ public class Cmsc3330Application  {
         this.courseGradeRepository = courseGradeRepository;
     }
 
+    /**
+     * Main method to run backend application
+     * @param args argument
+     * @throws SQLException SQL exception
+     * @throws FileNotFoundException File not found
+     */
     public static void main(String[] args) throws SQLException, FileNotFoundException {
 
        SpringApplication.run(Cmsc3330Application.class, args);
@@ -68,10 +92,10 @@ public class Cmsc3330Application  {
 
 
     /**
-     * Import Student to Sql DB
+     * Old Java import method, used to check entry values
      *
-     * @param students
-     * @throws SQLException
+     * @param students student hashmap
+     * @throws SQLException sql exception
      */
     public static void studentImport(HashMap<String, Student> students) throws SQLException {
         for (Map.Entry<String, Student> entry : students.entrySet()) {
@@ -82,6 +106,11 @@ public class Cmsc3330Application  {
         }
     }
 
+    /**
+     * Old Instructor import, used as check
+     * @param teachers teacher hashmap
+     * @throws SQLException sql exception
+     */
     public static void instructorImport(HashMap<String, Instructor> teachers) throws SQLException {
         for (Map.Entry<String, Instructor> entry : teachers.entrySet()) {
             String sql = "INSERT INTO instructor " + "VALUES (";
@@ -92,6 +121,11 @@ public class Cmsc3330Application  {
         }
     }
 
+    /**
+     * Old course import, used as check
+     * @param c course hashmap
+     * @throws SQLException sql exception
+     */
     public static void courseImport(HashMap<String, Course> c) throws SQLException {
         for (Map.Entry<String, Course> entry : c.entrySet()) {
             String sql = "INSERT INTO course " + "VALUES (";
@@ -101,6 +135,11 @@ public class Cmsc3330Application  {
         }
     }
 
+    /**
+     * Old grade import, used as check
+     * @param c grade hashmap
+     * @throws SQLException sql exception
+     */
     public static void gradeImport(HashMap<String, CourseGrade> c) throws SQLException {
         for (Map.Entry<String, CourseGrade> entry : c.entrySet()) {
             String sql = "INSERT INTO course_grade " + "VALUES (";
@@ -110,6 +149,11 @@ public class Cmsc3330Application  {
         }
     }
 
+    /**
+     * Old section import, used as check
+     * @param c section hashmap
+     * @throws SQLException sql exception
+     */
     public static void sectionImport(HashMap<String, Section> c) throws SQLException {
         for (Map.Entry<String, Section> entry : c.entrySet()) {
             String sql = "INSERT INTO section " + "VALUES (";
@@ -119,12 +163,21 @@ public class Cmsc3330Application  {
         }
     }
 
+    /**
+     * Command line runner
+     * @return data processed
+     */
     @Bean
     public CommandLineRunner process(){
         return (args) ->
                 processdata();
     }
 
+    /**
+     * Method to process and store data into sql database
+     * @throws SQLException sql exception
+     * @throws FileNotFoundException file not found
+     */
     private void processdata() throws SQLException, FileNotFoundException {
 
         File csvFile = new File("src/Lab 5 Student.csv");
@@ -189,10 +242,10 @@ public class Cmsc3330Application  {
 
 
     /**
-     * Read CSV file and extract data
+     * Read CSV file and extract student data
      *
-     * @param csvFile
-     * @throws FileNotFoundException
+     * @param csvFile student file
+     * @throws FileNotFoundException File not found
      */
     public void studentFileReader(File csvFile) throws FileNotFoundException {
         Scanner fileInput = new Scanner(csvFile);
@@ -209,6 +262,11 @@ public class Cmsc3330Application  {
 
     }
 
+    /**
+     * Read CSV File to extract instructor data
+     * @param csvFile instructor file
+     * @throws FileNotFoundException File not found
+     */
     public void instructorFileReader(File csvFile) throws FileNotFoundException {
         Scanner fileInput = new Scanner(csvFile);
         // Skip 1st line
@@ -224,6 +282,11 @@ public class Cmsc3330Application  {
 
     }
 
+    /**
+     * Read CSV File tp extract course data
+     * @param csvFile course file
+     * @throws FileNotFoundException File not found
+     */
     public void courseFileReader(File csvFile) throws FileNotFoundException {
         Scanner fileInput = new Scanner(csvFile);
         // Skip 1st line
@@ -239,6 +302,11 @@ public class Cmsc3330Application  {
 
     }
 
+    /**
+     * Read CSV file to extract course grade data
+     * @param csvFile courseGrade file
+     * @throws FileNotFoundException File not found
+     */
     public void gradeFileReader(File csvFile) throws FileNotFoundException {
         Scanner fileInput = new Scanner(csvFile);
         // Skip 1st line
@@ -254,6 +322,11 @@ public class Cmsc3330Application  {
 
     }
 
+    /**
+     * Read CSV file to extract section data
+     * @param csvFile section file
+     * @throws FileNotFoundException File not found
+     */
     public void sectionFileReader(File csvFile) throws FileNotFoundException {
         Scanner fileInput = new Scanner(csvFile);
         // Skip 1st line
@@ -270,9 +343,9 @@ public class Cmsc3330Application  {
     }
 
     /**
-     * Creates person object and adds to hashmap
+     * Creates student object and adds to student repository
      *
-     * @param row
+     * @param row Data from file
      */
     public void storePerson(String[] row) {
         Student p = new Student();
@@ -292,6 +365,10 @@ public class Cmsc3330Application  {
         System.out.println("saved");
     }
 
+    /**
+     * Creates instructor object and adds to instructor repository
+     * @param row data
+     */
     public void storeInstructor(String[] row) {
         Instructor p = new Instructor(Integer.parseInt(row[0]), row[1], row[2], row[3], row[4]);
         if (!instructors.containsKey(row[0])) {
@@ -301,6 +378,10 @@ public class Cmsc3330Application  {
         System.out.println(p.toString());
     }
 
+    /**
+     * Creates course object and adds to course repository
+     * @param row course data
+     */
     public void storeCourse(String[] row) {
         Course p = new Course();
         p.setCourseId(Integer.parseInt(row[0]));
@@ -315,6 +396,10 @@ public class Cmsc3330Application  {
         System.out.println(p.toString());
     }
 
+    /**
+     * Creates courseGrade object and stores into repository
+     * @param row courseGrade data
+     */
     public void storeGrade(String[] row) {
         CourseGrade p = new CourseGrade(Integer.parseInt(row[0]), Integer.parseInt(row[1]), Integer.parseInt(row[2]), row[3]);
         if (!grades.containsKey(row[0])) {
@@ -324,6 +409,10 @@ public class Cmsc3330Application  {
         System.out.println(p.toString());
     }
 
+    /**
+     * Creates section object and stores into section repository
+     * @param row section data
+     */
     public void storeSection(String[] row) {
         boolean check = Boolean.parseBoolean(row[2]);
         int value = 0;
