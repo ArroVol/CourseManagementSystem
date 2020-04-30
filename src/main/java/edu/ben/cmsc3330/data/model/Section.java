@@ -45,4 +45,11 @@ public class Section {
     @Column(name = "day_and_time")
     private String dayAndTime;
 
+    @Column(name = "course_name")
+    private String courseName;
+
+    @Column(name = "course_subject")
+    private String courseSubject;
+
+
 }

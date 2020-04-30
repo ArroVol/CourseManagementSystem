@@ -1,32 +1,27 @@
 package edu.ben.cmsc3330.web.controller;
 
+import edu.ben.cmsc3330.data.model.Course;
 import edu.ben.cmsc3330.data.model.Registration;
-import edu.ben.cmsc3330.data.model.Registration;
-import edu.ben.cmsc3330.data.model.Registration;
-import edu.ben.cmsc3330.data.model.Registration;
+import edu.ben.cmsc3330.data.model.Section;
+import edu.ben.cmsc3330.data.repository.CourseRepository;
 import edu.ben.cmsc3330.data.repository.RegistrationRepository;
-import edu.ben.cmsc3330.data.translator.RegistrationTranslator;
-import edu.ben.cmsc3330.data.translator.RegistrationTranslator;
-import edu.ben.cmsc3330.web.model.RegistrationView;
-import edu.ben.cmsc3330.web.model.RegistrationView;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.catalina.mapper.Mapper;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.ValidationException;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Slf4j
 @RestController
 public class RegistrationController {
     private final RegistrationRepository registrationRepository;
+    private final CourseRepository courseRepository;
 
-    public RegistrationController(RegistrationRepository registrationRepository) {
+    public RegistrationController(RegistrationRepository registrationRepository, CourseRepository courseRepository) {
         this.registrationRepository = registrationRepository;
+        this.courseRepository = courseRepository;
     }
 
 //    //http://localhost:8080/api/registration/1
@@ -71,32 +66,53 @@ public class RegistrationController {
 //        return this.registrationRepository.findByRegistrationSubjectContainingOrderByRegistrationSubject(registrationName);
 //    }
 
-    @PostMapping(value = "/api/registration/register")
-    public Registration save(@RequestBody RegistrationView registrationView, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            throw new ValidationException();
-        }
-
-        Registration newRegistration = new Registration();
-        newRegistration.setRegistrationId(registrationView.getRegistrationId());
-        newRegistration.setStudentId(registrationView.getStudentId());
-        newRegistration.setSectionNo(registrationView.getSectionNo());
-        newRegistration.setSemester(registrationView.getSemester());
-        newRegistration.setCourseName(registrationView.getCourseName());
-        newRegistration.setDateOfRegistration(registrationView.getDateOfRegistration());
-        newRegistration.setDateOfCompletion(registrationView.getDateOfCompletion());
-
-        // save note instance to db
-        this.registrationRepository.save(newRegistration);
-        log.info("saved the registration object");
-        return newRegistration;
-    }
+//    @PostMapping(value = "/api/registration/register")
+//    public Registration save(@RequestBody Section section, BindingResult bindingResult) {
+//        log.info("inside the postmapping of add registration");
+//        if (bindingResult.hasErrors()) {
+//            throw new ValidationException();
+//        }
+//          Optional<Course> course = courseRepository.findByCourseId(section.getCourseId());
+//        Registration newRegistration = new Registration();
+////        newRegistration.setRegistrationId();
+//        newRegistration.setStudentId(1);
+//        newRegistration.setSectionNo(section.getSectionNo());
+//        newRegistration.setSemester(section.getSemester());
+//        newRegistration.setCourseName(RegistrationTranslator.entityToView(registrationOption.get());
+//        newRegistration.setDateOfRegistration(registrationView.getDateOfRegistration());
+//        newRegistration.setDateOfCompletion(registrationView.getDateOfCompletion());
+//        log.info(registrationView.getCourseName() + " :Course Name");
+//        log.info(registrationView.getDateOfRegistration() + " : registration Id");
+//        log.info(registrationView.getSectionNo() + " :sectionNo");
+//
+//        // save note instance to db
+////        this.registrationRepository.save(newRegistration);
+//        this.registrationRepository.save(registrationView);
+//        log.info("saved the registration object");
+////        return newRegistration;
+//        return registrationView;
+//    }
 
     // delete user by id
     @DeleteMapping(value = "/api/registration/delete/{registrationId}")
-    public ResponseEntity<Registration> deleteUser(@PathVariable("registrationId") int registrationId) {
+//    public ResponseEntity<Registration> deleteRegistration(@PathVariable("registrationId") int registrationId) {
+         public void deleteRegistration(@PathVariable("registrationId") int registrationId) {
+
+        log.info("inside the delete mapping backend");
         Registration existingRegistration = this.registrationRepository.findByRegistrationId(registrationId);
         this.registrationRepository.delete(existingRegistration);
-        return ResponseEntity.ok().build();
+        List<Registration> listOfClasses = this.registrationRepository.findAll();
+//        return ResponseEntity.ok().build();
+//        return listOfClasses;
     }
+//
+//    // delete user by id
+//    @RequestMapping(value = "/api/registration/test")
+//    public ResponseEntity<Registration> deleteUserTest()  {
+//        log.info("inside the delete mapping backend");
+////        Registration existingRegistration = this.registrationRepository.findByRegistrationId(registrationId);
+////        this.registrationRepository.delete(existingRegistration);
+//        return ResponseEntity.ok().build();
+//    }
+
 }

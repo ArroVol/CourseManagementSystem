@@ -4,4 +4,7 @@ ID,Course Name,Units,Course Subject,,,Instructor ID,Class size
 1003,Python Laboratory,5,Computer Science,,,i2004,25
 1004,Data Structures and Algorithms,4,Computer Science,,,i2001,20
 1005,Elementary Teaching,5,Education,,,i2003,20
-1006,Nutrition,5,Health Science,,,i2005,25
+1006,Object Oriented Programming,3,Computer Science,,,i2005,25
+1007,Computer Architecture,3,Computer Science,,,i2005,25
+1008,Vegetables and the world,5,Health Science,,,i2005,25
+1009,Theology of Broccoli,5,Health Science,,,i2005,25

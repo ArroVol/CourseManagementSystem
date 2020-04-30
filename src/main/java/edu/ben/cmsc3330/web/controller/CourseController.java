@@ -26,7 +26,7 @@ public class CourseController {
     //http://localhost:8080/api/course/1
     @GetMapping(value = "/api/course/{courseId}")
     public CourseView viewCourseById(@PathVariable int courseId) throws Exception {
-        log.info("inside view course method");
+        log.info("inside the get mapping for view course by Id");
         // Retrieve the Course object
         Optional<Course> courseOption = courseRepository.findByCourseId(courseId);
 

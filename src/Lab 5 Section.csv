@@ -1,14 +1,18 @@
-Section Number,Semester,Status,Room Number,Day and Time,Course ID
-301,Fall 2019,TRUE,B231,Fri 12-2:30,1003
-302,Fall 2019,FALSE,B001,MoWe 11-12:15,1004
-303,Spring 2020,TRUE,B330,MoWeFri 9:00-9:50,1002
-304,Spring 2020,TRUE,B201,TuTh 11-12:15,1006
-305,Summer 2019,FALSE,K104,MoWe 1:30-2:45,1005
-306,Fall 2019,TRUE,G201,TuTh 1:30-2:45,1001
-301,Fall 2020,TRUE,B231,Fri 12-2:30,1003
-303,Spring 2021,TRUE,B330,MoWeFri 9:00-9:50,1002
-305,Summer 2020,FALSE,K104,MoWe 1:30-2:45,1005
-401,Fall 2020,TRUE,B231,Fri 12-2:30,1003
-403,Spring 2021,TRUE,B330,MoWeFri 9:00-9:50,1002
-405,Summer 2020,FALSE,K104,MoWe 1:30-2:45,1005
+Section Number,Semester,Status,Room Number,Day and Time,Course ID,Course Name, Course Subject
+301,Fall 2020,TRUE,B231,Fri 12-2:30,1003,Intro to Excel,Business Analytics
+302,Fall 2020,FALSE,B001,MoWe 11-12:15,1004,Data Structures and Algorithms,Computer Science
+303,Spring 2020,TRUE,B330,MoWeFri 9:00-9:50,1002,Intro to Chemistry,Chemistry
+304,Spring 2020,TRUE,B201,TuTh 11-12:15,1006,Nutrition,Health Science
+305,Summer 2020,FALSE,K104,MoWe 1:30-2:45,1005,Elementary Teaching,Education
+306,Fall 2019,TRUE,G201,TuTh 1:30-2:45,1001,Intro to Excel,Business Analytics
+301,Fall 2020,TRUE,B231,Fri 12-2:30,1003,Python Laboratory,Computer Science
+303,Spring 2021,TRUE,B330,MoWeFri 9:00-9:50,1002,Intro to Chemistry,Chemistry
+305,Summer 2020,FALSE,K104,MoWe 1:30-2:45,1005,Elementary Teaching,Education
+401,Fall 2020,TRUE,B231,Fri 12-2:30,1003,Python Laboratory,Computer Science
+403,Spring 2021,TRUE,B330,MoWeFri 9:00-9:50,1002,Nutrition,Health Science
+405,Summer 2020,FALSE,K104,MoWe 1:30-2:45,1005,Elementary Teaching,Education
+309,Summer 2020,FALSE,K104,MoWe 1:30-2:45,1006,Object Oriented Programming,Computer Science
+315,Summer 2020,FALSE,K104,MoWe 1:30-2:45,1007,Computer Architecture,Computer Science
+325,Fall 2020,FALSE,K104,MoWe 1:30-2:45,1008,Vegetables and the world,Health Science
+335,Spring 2021,FALSE,K104,MoWe 1:30-2:45,1009,Theology of Broccoli,Health Science
 

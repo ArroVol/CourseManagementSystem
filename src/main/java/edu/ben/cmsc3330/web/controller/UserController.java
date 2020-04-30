@@ -73,7 +73,7 @@ public class UserController {
     // get all users
     @GetMapping(value = "/api/user")
     public List<User> viewAllUsers() {
-        log.info("inside the get lal users in the user controller ");
+        log.info("inside the get all users in the user controller ");
         return this.userRepository.findAll();
 //                return UserTranslator.entityToView(userRepository.findAll());
     }

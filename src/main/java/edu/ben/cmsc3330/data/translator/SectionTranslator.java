@@ -13,6 +13,8 @@ public class SectionTranslator {
                 .status(section.isStatus())
                 .roomNo(section.getRoomNo())
                 .dayAndTime(section.getDayAndTime())
+                .courseName(section.getCourseName())
+                .courseSubject(section.getCourseSubject())
                 .build();
     }
 }

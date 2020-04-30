@@ -337,6 +337,8 @@ public class Cmsc3330Application  {
         p.setRoomNo(row[3]);
         p.setDayAndTime(row[4]);
         p.setCourseId(Integer.parseInt(row[5]));
+        p.setCourseName(row[6]);
+        p.setCourseSubject(row[7]);
         if (!sections.containsKey(row[0])) {
             sections.put(row[0], p);
             sectionRepository.save(p);

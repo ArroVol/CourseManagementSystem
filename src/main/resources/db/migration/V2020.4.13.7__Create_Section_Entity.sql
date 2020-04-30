@@ -5,6 +5,8 @@ CREATE TABLE IF NOT EXISTS `lab5`.`section` (
     `room_no` VARCHAR(45) NULL DEFAULT NULL,
     `day_and_time` VARCHAR(45) NULL DEFAULT NULL,
     `course_id` INT UNSIGNED NOT NULL,
+    `course_name` VARCHAR(45) NULL,
+    `course_subject` VARCHAR(45) NULL,
     PRIMARY KEY (`section_no`),
     INDEX `fk_course_id_idx` (`course_id` ASC) VISIBLE,
     CONSTRAINT `fk_section_course_id`

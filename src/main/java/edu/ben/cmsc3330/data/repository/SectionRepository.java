@@ -20,6 +20,8 @@ public interface SectionRepository extends JpaRepository<Section, Long> {
 
     List<Section> findBySemesterContainingOrderBySemester(String semester);
 
+    List<Section>findByCourseSubject(String courseSubject);
+
 
 
 

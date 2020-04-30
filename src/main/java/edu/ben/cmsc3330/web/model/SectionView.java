@@ -27,4 +27,7 @@ public class SectionView {
 
     private String dayAndTime;
 
+    private String courseName;
+
+    private String courseSubject;
 }
