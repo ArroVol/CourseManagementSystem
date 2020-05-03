@@ -92,6 +92,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .antMatchers(HttpMethod.GET, "/api/user/*").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/user").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/user/newUser").permitAll()
+
 
                 .antMatchers(HttpMethod.GET, "/api/user/retrieve/*").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/user/retrieve").permitAll()
@@ -105,6 +107,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .antMatchers(HttpMethod.GET, "/api/registration/register/*").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/registration/register").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/registration/register/*").permitAll()
+
 
                 .antMatchers(HttpMethod.DELETE, "/api/registration/delete/*").permitAll()
                 .antMatchers(HttpMethod.DELETE, "/api/registration/delete").permitAll()

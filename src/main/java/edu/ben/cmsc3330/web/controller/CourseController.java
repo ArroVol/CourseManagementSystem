@@ -1,6 +1,4 @@
 package edu.ben.cmsc3330.web.controller;
-
-import edu.ben.cmsc3330.data.model.Course;
 import edu.ben.cmsc3330.data.model.Course;
 import edu.ben.cmsc3330.data.repository.CourseRepository;
 import edu.ben.cmsc3330.data.translator.CourseTranslator;

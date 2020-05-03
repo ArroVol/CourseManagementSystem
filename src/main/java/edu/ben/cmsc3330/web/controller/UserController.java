@@ -1,14 +1,17 @@
 package edu.ben.cmsc3330.web.controller;
 
+import edu.ben.cmsc3330.data.model.Course;
+import edu.ben.cmsc3330.data.model.User;
+import edu.ben.cmsc3330.data.model.Section;
 import edu.ben.cmsc3330.data.model.User;
 import edu.ben.cmsc3330.data.repository.UserRepository;
 import edu.ben.cmsc3330.data.translator.UserTranslator;
 import edu.ben.cmsc3330.web.model.UserView;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.ValidationException;
 import java.util.List;
 import java.util.Optional;
 
@@ -78,12 +81,32 @@ public class UserController {
 //                return UserTranslator.entityToView(userRepository.findAll());
     }
 
-//    // get all users by subject
-//    @GetMapping(value = "/api/user/subject/{userSubject}")
-//    public List<User> getUsersBySubject(@PathVariable String userSubject) throws Exception {
-//        log.info("inside the get lal users in the user controller: " + userSubject);
-//        return this.userRepository.findByUserSubjectContainingOrderByUserSubject(userSubject);
-//    }
+    @PostMapping(value = "/api/user/newUser")
+    public User save(@RequestBody User user, BindingResult bindingResult) {
+        log.info("inside the postmapping of add newUser!");
+        if (bindingResult.hasErrors()) {
+            throw new ValidationException();
+        }
+
+        log.info(user.getFirstName());
+        log.info(user.getEmail());
+        log.info(String.valueOf(user.getStudentId()));
+
+        Optional<User> check = userRepository.findByStudentId(user.getStudentId());
+
+        User newUser = new User();
+        newUser.setUserId(user.getUserId());
+        newUser.setFirstName(user.getFirstName());
+        newUser.setLastName(user.getLastName());
+        newUser.setEmail(user.getEmail());
+        newUser.setPassword(user.getPassword());
+        newUser.setStudentId(user.getStudentId());
+
+        // save note instance to db
+        this.userRepository.save(newUser);
+        return newUser;
+    }
+
 //
 //    // get all users by name
 //    @GetMapping(value = "/api/user/name/{userName}")

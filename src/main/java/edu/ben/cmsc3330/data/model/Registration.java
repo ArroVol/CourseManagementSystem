@@ -40,11 +40,11 @@ public class Registration {
     @Column(name = "course_name")
     private String courseName;
 
-    @NotNull
+
     @Column(name = "date_of_registration")
     private String dateOfRegistration;
 
-    @NotNull
+
     @Column(name = "date_of_completion")
     private String dateOfCompletion;
 

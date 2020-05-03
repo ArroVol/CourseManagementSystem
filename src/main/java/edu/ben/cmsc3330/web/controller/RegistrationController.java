@@ -10,6 +10,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.ValidationException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,9 +43,12 @@ public class RegistrationController {
 
     // get all registrations
     @GetMapping(value = "/api/registration")
-    public List<Registration> viewAllRegistrations() {
-        log.info("inside the get all users in the registration controller ");
-        return this.registrationRepository.findAll();
+    public List<Registration> viewAllRegistrations() throws Exception {
+        List<Registration> allRegistrations = registrationRepository.findAll();
+        if(allRegistrations == null){
+          throw new Exception("There are no registrations");
+        }
+        return allRegistrations;
     }
 
     // get all registrations by subject
@@ -54,7 +59,7 @@ public class RegistrationController {
         // Verify we actually got a good registration/registration id
         if (registrationOption.isEmpty()) {
             log.error("Registration with id [{}] does not exist in DB", studentId);
-            throw new Exception("Registration with id [" + studentId + "] does not exist in DB");
+            throw new Exception("There are no registration for [" + studentId + "] in the DB");
         }
         return registrationOption;
     }
@@ -66,53 +71,43 @@ public class RegistrationController {
 //        return this.registrationRepository.findByRegistrationSubjectContainingOrderByRegistrationSubject(registrationName);
 //    }
 
-//    @PostMapping(value = "/api/registration/register")
-//    public Registration save(@RequestBody Section section, BindingResult bindingResult) {
-//        log.info("inside the postmapping of add registration");
-//        if (bindingResult.hasErrors()) {
-//            throw new ValidationException();
-//        }
-//          Optional<Course> course = courseRepository.findByCourseId(section.getCourseId());
-//        Registration newRegistration = new Registration();
-////        newRegistration.setRegistrationId();
-//        newRegistration.setStudentId(1);
-//        newRegistration.setSectionNo(section.getSectionNo());
-//        newRegistration.setSemester(section.getSemester());
-//        newRegistration.setCourseName(RegistrationTranslator.entityToView(registrationOption.get());
-//        newRegistration.setDateOfRegistration(registrationView.getDateOfRegistration());
-//        newRegistration.setDateOfCompletion(registrationView.getDateOfCompletion());
-//        log.info(registrationView.getCourseName() + " :Course Name");
-//        log.info(registrationView.getDateOfRegistration() + " : registration Id");
-//        log.info(registrationView.getSectionNo() + " :sectionNo");
-//
-//        // save note instance to db
-////        this.registrationRepository.save(newRegistration);
-//        this.registrationRepository.save(registrationView);
-//        log.info("saved the registration object");
-////        return newRegistration;
-//        return registrationView;
-//    }
+    @PostMapping(value = "/api/registration/register/{studentId}")
+    public Registration save(@RequestBody Section section, BindingResult bindingResult, @PathVariable int studentId) {
+        log.info("inside the postmapping of add registration, studentId; " + studentId);
+        if (bindingResult.hasErrors()) {
+            throw new ValidationException();
+        }
+          Optional<Course> course = courseRepository.findByCourseId(section.getCourseId());
+
+        Registration check = registrationRepository.findBySectionNoAndStudentId(section.getSectionNo(), studentId);
+        if(check != null){
+            log.info("the section is already registered for by this student.");
+            return null;
+        }
+        Registration newRegistration = new Registration();
+        newRegistration.setStudentId(studentId);
+        newRegistration.setSectionNo(section.getSectionNo());
+        newRegistration.setSemester(section.getSemester());
+        newRegistration.setCourseName(section.getCourseName());
+//        newRegistration.setDateOfRegistration(timeStamp);
+//        newRegistration.setDateOfCompletion();
+
+        // save note instance to db
+        this.registrationRepository.save(newRegistration);
+        return newRegistration;
+    }
 
     // delete user by id
     @DeleteMapping(value = "/api/registration/delete/{registrationId}")
-//    public ResponseEntity<Registration> deleteRegistration(@PathVariable("registrationId") int registrationId) {
          public void deleteRegistration(@PathVariable("registrationId") int registrationId) {
 
         log.info("inside the delete mapping backend");
         Registration existingRegistration = this.registrationRepository.findByRegistrationId(registrationId);
+        if(existingRegistration == null){
+
+        }
         this.registrationRepository.delete(existingRegistration);
         List<Registration> listOfClasses = this.registrationRepository.findAll();
-//        return ResponseEntity.ok().build();
-//        return listOfClasses;
     }
-//
-//    // delete user by id
-//    @RequestMapping(value = "/api/registration/test")
-//    public ResponseEntity<Registration> deleteUserTest()  {
-//        log.info("inside the delete mapping backend");
-////        Registration existingRegistration = this.registrationRepository.findByRegistrationId(registrationId);
-////        this.registrationRepository.delete(existingRegistration);
-//        return ResponseEntity.ok().build();
-//    }
 
 }

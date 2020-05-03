@@ -19,4 +19,8 @@ public interface RegistrationRepository extends JpaRepository<Registration, Long
    Registration findByRegistrationId(int registrationId);
 
     Page<Registration> findBySemester(String id, Pageable pageable);
+
+    Registration findBySectionNo(int sectionNo);
+
+    Registration findBySectionNoAndStudentId(int sectionNo, int studentId);
 }
