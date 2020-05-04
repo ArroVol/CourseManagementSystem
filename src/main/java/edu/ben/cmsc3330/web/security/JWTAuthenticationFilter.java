@@ -37,6 +37,13 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         setFilterProcessesUrl(SecurityConstants.AUTH_LOGIN_URL);
     }
 
+    /**
+     * Authentication given email and password credentials
+     * @param request HTTP Request
+     * @param response HTTP Response
+     * @return User Authentication
+     * @throws AuthenticationException Invalid Authentication
+     */
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request,
                                                 HttpServletResponse response) throws AuthenticationException {

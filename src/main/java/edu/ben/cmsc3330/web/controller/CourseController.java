@@ -13,12 +13,22 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Controller for Courses
+ */
 @Slf4j
 @RestController
 public class CourseController {
 
+    /**
+     * Course Repository
+     */
     private final CourseRepository courseRepository;
 
+    /**
+     * Course Controller Builder
+     * @param courseRepository
+     */
     public CourseController(CourseRepository courseRepository) {
         this.courseRepository = courseRepository;
     }

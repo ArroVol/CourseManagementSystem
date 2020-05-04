@@ -13,12 +13,26 @@ import javax.validation.ValidationException;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Controller for Registration
+ */
 @Slf4j
 @RestController
 public class RegistrationController {
+    /**
+     * Repository for Registration
+     */
     private final RegistrationRepository registrationRepository;
+    /**
+     * Repository for Courses
+     */
     private final CourseRepository courseRepository;
 
+    /**
+     * Registration Controller Builder
+     * @param registrationRepository Registration Repository
+     * @param courseRepository Course Repository
+     */
     public RegistrationController(RegistrationRepository registrationRepository, CourseRepository courseRepository) {
         this.registrationRepository = registrationRepository;
         this.courseRepository = courseRepository;

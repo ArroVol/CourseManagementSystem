@@ -13,12 +13,22 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Controller for Sections
+ */
 @Slf4j
 @RestController
 public class SectionController {
 
+    /**
+     * Section Repository
+     */
     private final SectionRepository sectionRepository;
 
+    /**
+     * Section Controller Builder
+     * @param sectionRepository Section repository
+     */
     public SectionController(final SectionRepository sectionRepository) {
         this.sectionRepository = sectionRepository;
     }
