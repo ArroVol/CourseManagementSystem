@@ -51,9 +51,9 @@ public class RegistrationController {
         return allRegistrations;
     }
 
-    // get all registrations by subject
+    // get all registrations by student id
     @GetMapping(value = "/api/registration/{studentId}")
-    public List<Registration> getRegistrationsBySubject(@PathVariable int studentId) throws Exception {
+    public List<Registration> getRegistrationsByStudent(@PathVariable int studentId) throws Exception {
         List<Registration> registrationOption = registrationRepository.findByStudentId(studentId);
 
         // Verify we actually got a good registration/registration id

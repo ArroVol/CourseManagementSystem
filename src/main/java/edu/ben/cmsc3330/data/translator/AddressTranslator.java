@@ -7,10 +7,12 @@ public class AddressTranslator {
 
     public static AddressView entityToView(final Address address) {
         return AddressView.builder()
+                .id(address.getId())
                 .street(address.getStreet())
                 .city(address.getCity())
                 .state(address.getState())
                 .postalCode(address.getPostalCode())
+                .studentId(address.getStudentId())
                 .build();
     }
 }

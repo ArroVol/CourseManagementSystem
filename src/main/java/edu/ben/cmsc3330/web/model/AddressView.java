@@ -11,15 +11,15 @@ import lombok.*;
 @ToString
 public class AddressView {
 
+    private int id;
+
     private String street;
-
-    private String street2;
-
-    private String street3;
 
     private String city;
 
     private String state;
 
     private String postalCode;
+
+    private int studentId;
 }

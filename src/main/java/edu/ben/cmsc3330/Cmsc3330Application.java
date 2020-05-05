@@ -325,7 +325,7 @@ public class Cmsc3330Application  {
         address.setState(row[9]);
         address.setPostalCode(row[10]);
         address.setStudentId(Integer.valueOf(row[0]));
-        if (!addresses.containsKey(row[0]) && people.get(row[0]) == null) {
+        if (!addresses.containsKey(row[0]) && people.get(row[0]) != null) {
             addresses.put(row[0], address);
             addressRepository.save(address);
         }

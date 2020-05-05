@@ -23,8 +23,6 @@ public class AddressController {
         this.addressRepository = addressRepository;
     }
 
-    // GET, POST, PUT, DELETE
-
     //http://localhost:8080/api/address/1
     @GetMapping(value = "/api/address/{studentId}")
     public AddressView viewAddressByStudentId(@PathVariable int studentId) throws Exception {
@@ -48,46 +46,47 @@ public class AddressController {
     }
 
     // get user by id
-    @GetMapping("/{id}")
+    @GetMapping(value = "/api/{id}")
     public Optional<Address> getUserById(@PathVariable (value = "id") long userId) {
         return this.addressRepository.findById(userId);
 //                .orElseThrow(() -> new ResourceNotFoundException("User not found with id :" + userId));
     }
 
 
-    @PostMapping(value = "/api/address/post/{addressId}")
-    public Address save(@RequestBody AddressView addressView, BindingResult bindingResult, @PathVariable int addressId) {
-        if (bindingResult.hasErrors()) {
-            throw new ValidationException();
-        }
-        Address newAddress = new Address();
-        newAddress.setStreet(addressView.getStreet());
-        newAddress.setCity(addressView.getCity());
-        newAddress.setState(addressView.getState());
-        newAddress.setPostalCode(addressView.getPostalCode());
-        // save note instance to db
-        this.addressRepository.save(newAddress);
-        return newAddress;
-    }
-
-
     // delete user by id
-    @DeleteMapping("/{id}")
+    @DeleteMapping(value = "/api/{id}")
     public ResponseEntity<Address> deleteUser(@PathVariable("id") Long userId) {
         Optional<Address> existingAddress = this.addressRepository.findById(userId);
         this.addressRepository.delete(existingAddress.get());
         return ResponseEntity.ok().build();
     }
 
-    // update user
-    @PutMapping("/address/put/{studentId}")
-    public Address updateAddress(@RequestBody Address address, @PathVariable ("studentId") int studentId) {
+    /**
+     *
+     * @param address
+     * @param bindingResult
+     * @return
+     */
+    @PutMapping(value = "/api/address/put")
+    public Address updateAddress2(@RequestBody Address address, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            throw new ValidationException();
+        }
         log.info("inside the put back end");
-        Optional<Address> existingAddress = this.addressRepository.findByStudentId(studentId);
-        existingAddress.get().setPostalCode(address.getPostalCode());
-        existingAddress.get().setCity(address.getCity());
-        existingAddress.get().setState(address.getState());
-        existingAddress.get().setStreet(address.getStreet());
+        log.info(address.getState());
+        Optional<Address> existingAddress = this.addressRepository.findByStudentId(address.getStudentId());
+        if(address.getPostalCode() != null) {
+            existingAddress.get().setPostalCode(address.getPostalCode());
+        }
+        if(address.getCity() != null){
+            existingAddress.get().setCity(address.getCity());
+        }
+        if(address.getState() != null){
+            existingAddress.get().setState(address.getState());
+        }
+        if(address.getStreet() != null){
+            existingAddress.get().setStreet(address.getStreet());
+        }
         return this.addressRepository.save(existingAddress.get());
     }
 

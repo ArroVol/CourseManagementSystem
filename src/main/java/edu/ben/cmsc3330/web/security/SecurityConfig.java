@@ -64,7 +64,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .antMatchers(HttpMethod.PUT, "/api/address/put/*").permitAll()
                 .antMatchers(HttpMethod.PUT, "/api/address/put").permitAll()
-//                .antMatchers(HttpMethod.PUT, "/api/address/post/*").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/address/update/*").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/address/update").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/address/post/*").permitAll()
 
 
                 .antMatchers(HttpMethod.GET, "/api/view-courses/*").permitAll()
@@ -113,6 +115,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/api/registration/register/*").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/registration/register").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/registration/register/*").permitAll()
+
+                .antMatchers(HttpMethod.POST, "/api/address/update").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/address/update/*").permitAll()
 
 
                 .antMatchers(HttpMethod.DELETE, "/api/registration/delete/*").permitAll()
