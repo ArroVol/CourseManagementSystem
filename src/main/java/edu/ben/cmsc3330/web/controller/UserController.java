@@ -11,12 +11,22 @@ import javax.validation.ValidationException;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Controller for Users
+ */
 @Slf4j
 @RestController
 public class UserController {
 
+    /**
+     * User Repository
+     */
     private final UserRepository userRepository;
 
+    /**
+     * User Controller Builder
+     * @param userRepository
+     */
     public UserController(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
@@ -36,6 +46,7 @@ public class UserController {
         return UserTranslator.entityToView(userOption.get());
     }
 
+    //Get User
     @GetMapping(value = "/api/user/retrieve/{email}/{password}")
     public UserView getUser(@PathVariable String email, @PathVariable String password) throws Exception {
         log.info("inside the get user by email and password");
@@ -54,6 +65,7 @@ public class UserController {
         return UserTranslator.entityToView(userOption.get());
     }
 
+    //Get User by Email
     @GetMapping(value = "/api/user/retrieve/{email}")
     public UserView getUserByEmail(@PathVariable String email) throws Exception {
         log.info("inside view user method");

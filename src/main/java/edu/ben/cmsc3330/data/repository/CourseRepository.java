@@ -9,7 +9,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 import java.util.Optional;
 
-
+/**
+ * Repository for Courses
+ */
 public interface CourseRepository extends JpaRepository<Course, Long > {
 
     Page<Course> findByCourseId(String id, Pageable pageable);
@@ -18,9 +20,18 @@ public interface CourseRepository extends JpaRepository<Course, Long > {
 
 //    Page<Course> findByCourseSubject(String id, Pageable pageable);
 
+    /**
+     * Method to find Course Subject in order
+     * @param id CourseID
+     * @return Course
+     */
     List<Course> findByCourseSubjectContainingOrderByCourseSubject(String id);
 
-
+    /**
+     * Method to find course by CourseUD
+     * @param id Course
+     * @return Course
+     */
     Optional<Course> findByCourseId(int id);
 
 
