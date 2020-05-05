@@ -41,17 +41,12 @@ class Cmsc3330ApplicationTests {
 
 		address = addressRepository.save(address);
 
-		Optional<Address> optionalAddress = addressRepository.findById(address.getId());
+//		Optional<Address> optionalAddress = addressRepository.findById(address.getId());
 
-		Address addressFromDB = optionalAddress.get();
+//		Address addressFromDB = optionalAddress.get();
 
-		assertThat(address).isEqualTo(addressFromDB);
+//		assertThat(address).isEqualTo(addressFromDB);
 	}
 
-
-	@Test
-	void yoMoma(){
-
-	}
 
 }

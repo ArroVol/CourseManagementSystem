@@ -314,7 +314,7 @@ public class Cmsc3330Application  {
     }
 
     /**
-     * creats an address object
+     * creates an address object
      * @param row data from file
      */
     private void storeAddress(String[] row) {
