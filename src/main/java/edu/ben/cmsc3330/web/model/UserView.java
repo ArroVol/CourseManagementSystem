@@ -23,6 +23,4 @@ public class UserView {
     private String password;
 
     private int studentId;
-
-//    private Address address;
 }

@@ -33,9 +33,6 @@ public class Section {
     @Column(name = "course_id")
     private int courseId;
 
-//    @Column(name = "instructor_id")
-//    private int instructorId;
-
     @Column(name = "status")
     private boolean status;
 

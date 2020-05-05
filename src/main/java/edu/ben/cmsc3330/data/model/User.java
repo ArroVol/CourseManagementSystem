@@ -34,12 +34,7 @@ public class User implements UserDetails, CredentialsContainer {
     @NotNull
     @Column(name = "last_name")
     private String lastName;
-//
-//    @Column(name = "ssn")
-//    private String ssn;
 
-//    @Column(name = "user_type")
-//    private String userType;
     @NotNull
     @Column(name = "email")
     private String email;

@@ -40,21 +40,6 @@ public class RegistrationController {
         this.courseRepository = courseRepository;
     }
 
-//    //http://localhost:8080/api/registration/1
-//    @GetMapping(value = "/api/registration/{registrationId}")
-//    public RegistrationView viewRegistrationById(@PathVariable int registrationId) throws Exception {
-//        log.info("inside view registration method");
-//        // Retrieve the Registration object
-//        Optional<Registration> registrationOption = registrationRepository.findByRegistrationId(registrationId);
-//
-//        // Verify we actually got a good registration/registration id
-//        if (registrationOption.isEmpty()) {
-//            log.error("Registration with id [{}] does not exist in DB", registrationId);
-//            throw new Exception("Registration with id [" + registrationId + "] does not exist in DB");
-//        }
-//        return RegistrationTranslator.entityToView(registrationOption.get());
-//    }
-
     // get all registrations
     @GetMapping(value = "/api/registration")
     public List<Registration> viewAllRegistrations() throws Exception {

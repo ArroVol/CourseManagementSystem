@@ -107,11 +107,4 @@ public class UserController {
         return newUser;
     }
 
-//
-//    // get all users by name
-//    @GetMapping(value = "/api/user/name/{userName}")
-//    public List<User> getUsersByName(@PathVariable String userName) throws Exception {
-//        log.info("inside the get lal users in the user controller: " + userName);
-//        return this.userRepository.findByUserSubjectContainingOrderByUserSubject(userName);
-//    }
 }

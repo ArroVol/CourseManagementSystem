@@ -18,8 +18,6 @@ public interface SectionRepository extends JpaRepository<Section, Long> {
 
     Page<Section> findBySectionNo(String id, Pageable pageable);
 
-//    Optional<Section> findBySemester(String semester);
-
     /**
      * Method to find Section by Section Number
      * @param sectionNo Section Number

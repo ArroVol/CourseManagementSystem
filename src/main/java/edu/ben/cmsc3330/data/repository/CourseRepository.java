@@ -18,7 +18,7 @@ public interface CourseRepository extends JpaRepository<Course, Long > {
 
     Page<Course> findByCourseNameContainingOrderByCourseName(String id, Pageable pageable);
 
-//    Page<Course> findByCourseSubject(String id, Pageable pageable);
+    Page<Course> findByCourseSubject(String id, Pageable pageable);
 
     /**
      * Method to find Course Subject in order

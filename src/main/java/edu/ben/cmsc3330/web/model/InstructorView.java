@@ -16,9 +16,7 @@ public class InstructorView {
 
     private String instructorId;
 
-
     private String firstName;
-
 
     private String lastName;
 

@@ -19,8 +19,6 @@ public class SectionView {
 
     private int courseId;
 
-//    private String instructorId;
-
     private boolean status;
 
     private String roomNo;
