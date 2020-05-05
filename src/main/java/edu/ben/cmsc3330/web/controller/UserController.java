@@ -1,8 +1,5 @@
 package edu.ben.cmsc3330.web.controller;
 
-import edu.ben.cmsc3330.data.model.Course;
-import edu.ben.cmsc3330.data.model.User;
-import edu.ben.cmsc3330.data.model.Section;
 import edu.ben.cmsc3330.data.model.User;
 import edu.ben.cmsc3330.data.repository.UserRepository;
 import edu.ben.cmsc3330.data.translator.UserTranslator;
@@ -10,7 +7,6 @@ import edu.ben.cmsc3330.web.model.UserView;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.ValidationException;
 import java.util.List;
 import java.util.Optional;
@@ -50,7 +46,6 @@ public class UserController {
         Optional<User> userOption = userRepository.findByEmailAndPassword(email, password);
         log.info(userOption.toString());
 
-
         // Verify we actually got a good user/user id
         if (userOption.isEmpty()) {
             log.error("User with email [{}] does not exist in DB", email, password);
@@ -83,17 +78,10 @@ public class UserController {
 
     @PostMapping(value = "/api/user/newUser")
     public User save(@RequestBody User user, BindingResult bindingResult) {
-        log.info("inside the postmapping of add newUser!");
         if (bindingResult.hasErrors()) {
             throw new ValidationException();
         }
-
-        log.info(user.getFirstName());
-        log.info(user.getEmail());
-        log.info(String.valueOf(user.getStudentId()));
-
         Optional<User> check = userRepository.findByStudentId(user.getStudentId());
-
         User newUser = new User();
         newUser.setUserId(user.getUserId());
         newUser.setFirstName(user.getFirstName());

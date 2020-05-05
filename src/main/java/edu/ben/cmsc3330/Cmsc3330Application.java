@@ -42,6 +42,7 @@ public class Cmsc3330Application  {
     public static HashMap<String, Course> courses = new HashMap<String, Course>();
     public static HashMap<String, CourseGrade> grades = new HashMap<String, CourseGrade>();
     public static HashMap<String, Section> sections = new HashMap<String, Section>();
+    public static HashMap<String, Address> addresses = new HashMap<String, Address>();
 
     /**
      * ArrayLists to remove duplicate data
@@ -51,6 +52,8 @@ public class Cmsc3330Application  {
     public static ArrayList<String> removeCourses = new ArrayList<String>();
     public static ArrayList<String> removeGrades = new ArrayList<String>();
     public static ArrayList<String> removeSections = new ArrayList<String>();
+    public static ArrayList<String> removeAddresses = new ArrayList<String>();
+
 
     /**
      * Class Repository Constructor
@@ -92,78 +95,6 @@ public class Cmsc3330Application  {
 
 
     /**
-     * Old Java import method, used to check entry values
-     *
-     * @param students student hashmap
-     * @throws SQLException sql exception
-     */
-    public static void studentImport(HashMap<String, Student> students) throws SQLException {
-        for (Map.Entry<String, Student> entry : students.entrySet()) {
-            String sql = "INSERT INTO student " + "VALUES (";
-            String part = entry.getValue().toString();
-            sql += part;
-            System.out.println(sql);
-        }
-    }
-
-    /**
-     * Old Instructor import, used as check
-     * @param teachers teacher hashmap
-     * @throws SQLException sql exception
-     */
-    public static void instructorImport(HashMap<String, Instructor> teachers) throws SQLException {
-        for (Map.Entry<String, Instructor> entry : teachers.entrySet()) {
-            String sql = "INSERT INTO instructor " + "VALUES (";
-            String part = entry.getValue().toString();
-            sql += part;
-            System.out.println(sql);
-
-        }
-    }
-
-    /**
-     * Old course import, used as check
-     * @param c course hashmap
-     * @throws SQLException sql exception
-     */
-    public static void courseImport(HashMap<String, Course> c) throws SQLException {
-        for (Map.Entry<String, Course> entry : c.entrySet()) {
-            String sql = "INSERT INTO course " + "VALUES (";
-            String part = entry.getValue().toString();
-            sql += part;
-            System.out.println(sql);
-        }
-    }
-
-    /**
-     * Old grade import, used as check
-     * @param c grade hashmap
-     * @throws SQLException sql exception
-     */
-    public static void gradeImport(HashMap<String, CourseGrade> c) throws SQLException {
-        for (Map.Entry<String, CourseGrade> entry : c.entrySet()) {
-            String sql = "INSERT INTO course_grade " + "VALUES (";
-            String part = entry.getValue().toString();
-            sql += part;
-            System.out.println(sql);
-        }
-    }
-
-    /**
-     * Old section import, used as check
-     * @param c section hashmap
-     * @throws SQLException sql exception
-     */
-    public static void sectionImport(HashMap<String, Section> c) throws SQLException {
-        for (Map.Entry<String, Section> entry : c.entrySet()) {
-            String sql = "INSERT INTO section " + "VALUES (";
-            String part = entry.getValue().toString();
-            sql += part;
-            System.out.println(sql);
-        }
-    }
-
-    /**
      * Command line runner
      * @return data processed
      */
@@ -187,13 +118,11 @@ public class Cmsc3330Application  {
         File sectionFile = new File("src/Lab 5 Section.csv");
 
         studentFileReader(csvFile);
+        addressFileReader(csvFile);
         instructorFileReader(instructorFile);
         courseFileReader(courseFile);
         sectionFileReader(sectionFile);
         gradeFileReader(gradeFile);
-
-//        DBConnector db = new DBConnector();
-//        line = db.getConnection().createStatement();
 //
 //        // Check if entry already in table
 //        studentDuplicates(line);
@@ -233,11 +162,12 @@ public class Cmsc3330Application  {
             }
         }
 
-        studentImport(people);
-        instructorImport(instructors);
-        courseImport(courses);
-        sectionImport(sections);
-        gradeImport(grades);
+        for (String a : removeAddresses) {
+            if (addresses.containsKey(a)) {
+                addresses.remove(a);
+            }
+        }
+
     }
 
 
@@ -261,6 +191,27 @@ public class Cmsc3330Application  {
         fileInput.close();
 
     }
+    /**
+     * Read CSV file and extract student data
+     *
+     * @param csvFile student file
+     * @throws FileNotFoundException File not found
+     */
+    public void addressFileReader(File csvFile) throws FileNotFoundException {
+        Scanner fileInput = new Scanner(csvFile);
+        // Skip 1st line
+        fileInput.nextLine();
+        // Store Student data
+        while (fileInput.hasNext()) {
+            String words = fileInput.nextLine().replace("'", "");
+            String[] row = words.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1);
+            storeAddress(row);
+        }
+
+        fileInput.close();
+
+    }
+
 
     /**
      * Read CSV File to extract instructor data
@@ -360,9 +311,24 @@ public class Cmsc3330Application  {
             people.put(row[0], p);
             studentRepository.save(p);
         }
-        System.out.println(p.toString());
-//        studentRepository.save(p);
-        System.out.println("saved");
+    }
+
+    /**
+     * creats an address object
+     * @param row data from file
+     */
+    private void storeAddress(String[] row) {
+
+        Address address = new Address();
+        address.setStreet(row[7]);
+        address.setCity(row[8]);
+        address.setState(row[9]);
+        address.setPostalCode(row[10]);
+        address.setStudentId(Integer.valueOf(row[0]));
+        if (!addresses.containsKey(row[0]) && people.get(row[0]) == null) {
+            addresses.put(row[0], address);
+            addressRepository.save(address);
+        }
     }
 
     /**
@@ -375,7 +341,6 @@ public class Cmsc3330Application  {
             instructors.put(row[0], p);
             instructorRepository.save(p);
         }
-        System.out.println(p.toString());
     }
 
     /**
@@ -383,17 +348,16 @@ public class Cmsc3330Application  {
      * @param row course data
      */
     public void storeCourse(String[] row) {
-        Course p = new Course();
-        p.setCourseId(Integer.parseInt(row[0]));
-        p.setCourseName(row[1]);
-        p.setUnits(Integer.parseInt(row[2]));
-        p.setCourseSubject(row[3]);
+        Course c = new Course();
+        c.setCourseId(Integer.parseInt(row[0]));
+        c.setCourseName(row[1]);
+        c.setUnits(Integer.parseInt(row[2]));
+        c.setCourseSubject(row[3]);
 
         if (!courses.containsKey(row[0])) {
-            courses.put(row[0], p);
-            courseRepository.save(p);
+            courses.put(row[0], c);
+            courseRepository.save(c);
         }
-        System.out.println(p.toString());
     }
 
     /**
@@ -406,7 +370,6 @@ public class Cmsc3330Application  {
             grades.put(row[0], p);
             courseGradeRepository.save(p);
         }
-        System.out.println(p.toString());
     }
 
     /**
@@ -432,7 +395,6 @@ public class Cmsc3330Application  {
             sections.put(row[0], p);
             sectionRepository.save(p);
         }
-        System.out.println(p.toString());
     }
     
 

@@ -63,13 +63,6 @@ public class RegistrationController {
         }
         return registrationOption;
     }
-//
-//    // get all registrations by name
-//    @GetMapping(value = "/api/registration/name/{registrationName}")
-//    public List<Registration> getRegistrationsByName(@PathVariable String registrationName) throws Exception {
-//        log.info("inside the get lal users in the registration controller: " + registrationName);
-//        return this.registrationRepository.findByRegistrationSubjectContainingOrderByRegistrationSubject(registrationName);
-//    }
 
     @PostMapping(value = "/api/registration/register/{studentId}")
     public Registration save(@RequestBody Section section, BindingResult bindingResult, @PathVariable int studentId) {
@@ -81,7 +74,6 @@ public class RegistrationController {
 
         Registration check = registrationRepository.findBySectionNoAndStudentId(section.getSectionNo(), studentId);
         if(check != null){
-            log.info("the section is already registered for by this student.");
             return null;
         }
         Registration newRegistration = new Registration();
@@ -89,8 +81,6 @@ public class RegistrationController {
         newRegistration.setSectionNo(section.getSectionNo());
         newRegistration.setSemester(section.getSemester());
         newRegistration.setCourseName(section.getCourseName());
-//        newRegistration.setDateOfRegistration(timeStamp);
-//        newRegistration.setDateOfCompletion();
 
         // save note instance to db
         this.registrationRepository.save(newRegistration);
@@ -101,7 +91,6 @@ public class RegistrationController {
     @DeleteMapping(value = "/api/registration/delete/{registrationId}")
          public void deleteRegistration(@PathVariable("registrationId") int registrationId) {
 
-        log.info("inside the delete mapping backend");
         Registration existingRegistration = this.registrationRepository.findByRegistrationId(registrationId);
         if(existingRegistration == null){
 

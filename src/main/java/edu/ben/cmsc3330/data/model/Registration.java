@@ -40,10 +40,8 @@ public class Registration {
     @Column(name = "course_name")
     private String courseName;
 
-
     @Column(name = "date_of_registration")
     private String dateOfRegistration;
-
 
     @Column(name = "date_of_completion")
     private String dateOfCompletion;

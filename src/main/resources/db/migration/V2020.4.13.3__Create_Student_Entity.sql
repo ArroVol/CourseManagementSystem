@@ -1,5 +1,4 @@
-CREATE TABLE IF NOT EXISTS `lab5`.`student`
-(
+CREATE TABLE IF NOT EXISTS `lab5`.`student` (
     `id` INT UNSIGNED NOT NULL,
     `student_first_name` VARCHAR(45) NOT NULL,
     `student_last_name` VARCHAR(45) NOT NULL,
@@ -7,6 +6,7 @@ CREATE TABLE IF NOT EXISTS `lab5`.`student`
     `ssn` VARCHAR(45) NOT NULL,
     `dob` VARCHAR(45) NOT NULL,
     `student_email` VARCHAR(45) NOT NULL,
-    PRIMARY KEY (`id`))
+    PRIMARY KEY (`id`),
+    UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE)
     ENGINE = InnoDB
-    DEFAULT CHARACTER SET = utf8;
+    DEFAULT CHARACTER SET = utf8
